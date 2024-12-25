@@ -32,17 +32,19 @@ def main(page: ft.Page):
         def parse_card_numbers(card_list):
             return ", ".join([f"{number}" for _name, number in card_list])
 
-        parse_title.value = f"1:1 [H] {parse_card_numbers(parsed_data['have'])} [W] {parse_card_numbers(parsed_data['want'])}"
+        have_cards = parsed_data["have"]
+        want_cards = parsed_data["want"]
+        parse_title.value = f"1:1 [H] {parse_card_numbers(have_cards)} [W] {parse_card_numbers(want_cards)}"
         parse_content.value = f"""Hello, I want trade cards 1:1 in same set. :steamhappy:
 
 [h1]HAVE[/h1]
 [list]
-{'\n'.join([f'[*] {name}' for name, number in parsed_data['have']])}
+{'\n'.join([f'[*] {name}' for name, number in have_cards])}
 [/list]
 
 [h1]WANT[/h1]
 [list]
-{'\n'.join([f'[*] {name}' for name, number in parsed_data['want']])}
+{'\n'.join([f'[*] {name}' for name, number in want_cards])}
 [/list]
 
 Thanks"""
