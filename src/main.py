@@ -2,6 +2,12 @@ import flet as ft
 from bs4 import BeautifulSoup
 import re
 from selenium import webdriver
+import sys
+
+if sys.platform == "emscripten":
+    import micropip
+
+    await micropip.install("ssl")
 
 
 def main(page: ft.Page):
