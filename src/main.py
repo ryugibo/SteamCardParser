@@ -44,21 +44,17 @@ def main(page: ft.Page):
                 "[h1]HAVE[/h1]"
                 "\n"
                 "[list]"
-                "\n"
-                f"{have_cards_str}"
-                "\n"
+                "\n{0}\n"
                 "[/list]"
                 "\n\n"
                 "[h1]WANT[/h1]"
                 "\n"
                 "[list]"
-                "\n"
-                f"{want_cards_str}"
-                "\n"
+                "\n{1}\n"
                 "[/list]"
                 "\n\n"
                 "Thanks"
-            )
+            ).format(have_cards_str, want_cards_str)
 
         have_cards = parsed_data["have"]
         want_cards = parsed_data["want"]
