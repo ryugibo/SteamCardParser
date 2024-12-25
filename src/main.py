@@ -1,23 +1,12 @@
 import flet as ft
+import requests
 from bs4 import BeautifulSoup
 import re
-import sys
 
 
 def main(page: ft.Page):
     async def button_clicked(e):
-        if sys.platform == "emscripten":
-            import micropip
-
-            await micropip.install("ssl")
-        from selenium import webdriver
-
-        page_html = ""
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_argument("--headless")
-        with webdriver.Chrome(options=chrome_options) as driver:
-            driver.get(url_input.value)
-            page_html = driver.page_source
+        page_html = requests.get(url_input.value).text
         soup = BeautifulSoup(page_html, features="html.parser")
         card_list = soup.find_all("div", class_="badge_card_set_card")
         parsed_data = {
