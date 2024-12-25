@@ -50,12 +50,12 @@ jobs:
           pip install -r requirements.txt
 
       - name: Build site
-        run: flet publish
+        run: flet publish --base-url ${{ steps.pages.outputs.base_path }}
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "dist${{ steps.pages.outputs.base_path }}"
+          path: "dist/"
 
   deploy:
     environment:
