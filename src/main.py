@@ -32,22 +32,36 @@ def main(page: ft.Page):
         def parse_card_numbers(card_list):
             return ", ".join([f"{number}" for _name, number in card_list])
 
+        def format_title_string(have_cards, want_cards):
+            return f"1:1 [H] {parse_card_numbers(have_cards)} [W] {parse_card_numbers(want_cards)}"
+
+        def format_content_string(have_cards, want_cards):
+            return (
+                "Hello, I want trade cards 1:1 in same set. :steamhappy:"
+                "\n\n"
+                "[h1]HAVE[/h1]"
+                "\n"
+                "[list]"
+                "\n"
+                f"{'\n'.join([f'[*] {name}' for name, number in have_cards])}"
+                "\n"
+                "[/list]"
+                "\n\n"
+                "[h1]WANT[/h1]"
+                "\n"
+                "[list]"
+                "\n"
+                f"{'\n'.join([f'[*] {name}' for name, number in want_cards])}"
+                "\n"
+                "[/list]"
+                "\n\n"
+                "Thanks"
+            )
+
         have_cards = parsed_data["have"]
         want_cards = parsed_data["want"]
-        parse_title.value = f"1:1 [H] {parse_card_numbers(have_cards)} [W] {parse_card_numbers(want_cards)}"
-        parse_content.value = f"""Hello, I want trade cards 1:1 in same set. :steamhappy:
-
-[h1]HAVE[/h1]
-[list]
-{'\n'.join([f'[*] {name}' for name, number in have_cards])}
-[/list]
-
-[h1]WANT[/h1]
-[list]
-{'\n'.join([f'[*] {name}' for name, number in want_cards])}
-[/list]
-
-Thanks"""
+        parse_title.value = format_title_string(have_cards, want_cards)
+        parse_content.value = format_content_string(have_cards, want_cards)
         page.update()
 
     url_input = ft.TextField(
