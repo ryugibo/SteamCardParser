@@ -1,13 +1,15 @@
 import flet as ft
-import requests
 from bs4 import BeautifulSoup
 import re
+from selenium import webdriver
 
 
 def main(page: ft.Page):
     def button_clicked(e):
-        response = requests.get(url_input.value)
-        soup = BeautifulSoup(response.text, features="html.parser")
+        page_html = ""
+        with webdriver.Chrome() as driver:
+            page_html = driver.page_source
+        soup = BeautifulSoup(page_html, features="html.parser")
         card_list = soup.find_all("div", class_="badge_card_set_card")
         parsed_data = {
             "have": [],
