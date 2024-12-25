@@ -36,6 +36,8 @@ def main(page: ft.Page):
             return f"1:1 [H] {parse_card_numbers(have_cards)} [W] {parse_card_numbers(want_cards)}"
 
         def format_content_string(have_cards, want_cards):
+            have_cards_str = "\n".join([f"[*] {name}" for name, number in have_cards])
+            want_cards_str = "\n".join([f"[*] {name}" for name, number in want_cards])
             return (
                 "Hello, I want trade cards 1:1 in same set. :steamhappy:"
                 "\n\n"
@@ -43,7 +45,7 @@ def main(page: ft.Page):
                 "\n"
                 "[list]"
                 "\n"
-                f"{'\n'.join([f'[*] {name}' for name, number in have_cards])}"
+                f"{have_cards_str}"
                 "\n"
                 "[/list]"
                 "\n\n"
@@ -51,7 +53,7 @@ def main(page: ft.Page):
                 "\n"
                 "[list]"
                 "\n"
-                f"{'\n'.join([f'[*] {name}' for name, number in want_cards])}"
+                f"{want_cards_str}"
                 "\n"
                 "[/list]"
                 "\n\n"
