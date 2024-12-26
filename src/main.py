@@ -13,7 +13,6 @@ def main(page: ft.Page):
             "have": [],
             "want": [],
         }
-        title_str = ""
         for i, card in enumerate(card_list):
             card_name = "".join(
                 card.find("div", class_="badge_card_set_title").findAll(
